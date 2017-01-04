@@ -11,7 +11,13 @@ setup(name = name,
       author = 'James Chryssanthacopoulos',
       author_email = 'jchryssanthacopoulos@gmail.com',
       url = 'https://github.com/jc4089/dataOps',
-      scripts = ['scripts/generateData.py', 'examples/runGenerateData.sh'],
+      scripts = [
+        'scripts/generateData.py',
+        'scripts/updateData.py',
+        'examples/runGenerateData.sh',
+        'examples/runUpdateData.sh',
+        'examples/clean.sh'
+        ],
       classifiers = [
         'Development Status :: 4 - Beta',
         'Topic :: Utilities',
