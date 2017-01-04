@@ -6,7 +6,7 @@ Script to generate data
 
 import argparse
 import os
-from context import dataOps
+import dataOps
 
 __author__ = 'James Chryssanthacopoulos'
 
