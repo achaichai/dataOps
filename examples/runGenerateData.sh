@@ -1,4 +1,7 @@
 #!/bin/bash
 
+# Add root directory to path
+PATH=$PATH:..
+
 # Generate data
-../scripts/generateData.py --help
+generateData.py --help
