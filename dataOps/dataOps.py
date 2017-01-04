@@ -11,6 +11,8 @@
 import string
 import os
 import random
+import shutil
+from utils import pjoin
 
 
 # Superclass
@@ -180,4 +182,40 @@ class FileUpdater(ControlledFileSystem):
             filename = os.path.join(self.directory, 'file%02d.txt' % (self._numFiles() + 1))
             
             # Write file
-            self.writeFile(filename)        
+            self.writeFile(filename)
+
+
+
+# This class backups a master dataset
+class FileBackup(object):
+    
+    def backup(self, dataDirectory, backupDirectory):
+        """
+        This method backups a master dataset into a backup directory
+        """
+        
+        # Name of directory
+        dataName = os.path.basename(dataDirectory)
+        
+        backupName = pjoin(backupDirectory, dataName)
+        
+        if not os.path.exists(backupName):
+            # No previous backup
+            os.makedirs(backupName)
+        
+        # Iterate through subdirectories
+        for dirName in os.listdir(dataDirectory):
+            srcDirName = pjoin(dataDirectory, dirName)
+            destDirName = pjoin(backupName, dirName)
+            
+            if not os.path.exists(destDirName):
+                # Make new subdirectory
+                os.makedirs(destDirName)
+            
+            # Iterate through files
+            for fileName in os.listdir(srcDirName):
+                srcFileName = pjoin(srcDirName, fileName)
+                destFileName = pjoin(destDirName, fileName)
+                
+                # Copy file
+                shutil.copyfile(srcFileName, destFileName)
