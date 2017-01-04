@@ -6,7 +6,7 @@ Script to generate data
 
 import argparse
 import os
-import dataOperators
+from context import dataOps
 
 __author__ = 'James Chryssanthacopoulos'
 
@@ -14,7 +14,7 @@ __author__ = 'James Chryssanthacopoulos'
 parser = argparse.ArgumentParser(description = 'Script to generate sample data')
 parser.add_argument('-i', '--inputFolder', help = 'Name of input folder', required = True)
 parser.add_argument('-s', '--fileSize', help = 'File size in metabytes', required = True)
-parser.add_argument('-f', '--folders', help = 'Folder names and sizes <name1>,<size1>,...', required = True)
+parser.add_argument('-f', '--folders', help = 'Folder names and sizes in megabytes <name1>,<size1>,...', required = True)
 
 # Parse inputs
 args = parser.parse_args()
@@ -43,6 +43,10 @@ for i in range(numSubFolders):
         subFolderSizes[i] = int(foldersAndSizes[idx + 1])
     
     idx += 2
+    
+# Convert file sizes to bytes
+fileSize *= 1024
+subFolderSizes = [1024 * size for size in subFolderSizes]
 
 # Make input folder if it doesn't already exist
 if not os.path.exists(inputFolder):
@@ -51,7 +55,7 @@ if not os.path.exists(inputFolder):
 # Create subfolders and files
 for subFolder, subFolderSize in zip(subFolders, subFolderSizes):
     # Instantiate a FileInitializer object for the subfolder
-    fiObj = dataOperators.FileInitializer(subFolder, fileSize, subFolderSize)
+    fiObj = dataOps.FileInitializer(subFolder, fileSize, subFolderSize)
 
     # Iteratively create files in the subfolder
     fiObj.writeFiles()

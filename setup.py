@@ -1,17 +1,16 @@
 from setuptools import setup, find_packages
-import dataOperators
+import dataOps
 
-name = 'dataOperators'
+name = 'dataOps'
 
-version = dataOperators.__version__
+version = dataOps.__version__
 
 setup(name = name,
       version = version,
       description = 'Data operators to create, update, and backup hierarchical files on disk',
       author = 'James Chryssanthacopoulos',
       author_email = 'jchryssanthacopoulos@gmail.com',
-      url = 'https://github.com/marcelcaraciolo/foursquare',
-      download_url = 'https://github.com/marcelcaraciolo/foursquare/tarball/master',
+      url = 'https://github.com/jc4089/dataOps',
       classifiers = [
         'Development Status :: 4 - Beta',
         'Topic :: Utilities',
