@@ -1,4 +1,4 @@
 #!/bin/bash
 
-# Remove master dataset
-rm -rf exampleData
+# Remove master datasets
+rm -rf exampleData*
