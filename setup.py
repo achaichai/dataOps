@@ -14,9 +14,12 @@ setup(name = name,
       scripts = [
         'scripts/generateData.py',
         'scripts/updateData.py',
+        'scripts/backupData.py',
         'examples/runGenerateData.sh',
         'examples/runUpdateData.sh',
-        'examples/clean.sh'
+        'examples/runBackupData.sh',
+        'examples/runAll.sh',
+        'examples/clean.sh',
         ],
       classifiers = [
         'Development Status :: 4 - Beta',
