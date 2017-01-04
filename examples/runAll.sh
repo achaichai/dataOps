@@ -49,3 +49,9 @@ updateData.py -i $inputFolder -f $incFolders
 
 echo BACKING UP UPDATED DATA ...
 backupData.py -i $inputFolder -b $backupFolder
+
+#################
+## CLEANING UP ##
+#################
+
+rm -rf $inputFolder
