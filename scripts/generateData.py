@@ -1,7 +1,12 @@
 #!/usr/bin/python
 
 """
-Script to generate data
+
+Script to generate the master dataset
+
+The usage is:
+    generateData.py -i <inputFolder> -s <fileSize> -f <folders>
+
 """
 
 import argparse
@@ -9,6 +14,9 @@ import os
 import dataOps
 
 __author__ = 'James Chryssanthacopoulos'
+
+# Constant
+bytesInMegabytes = 1048576
 
 # Define inputs
 parser = argparse.ArgumentParser(description = 'Script to generate sample data')
@@ -22,10 +30,16 @@ inputFolder = args.inputFolder
 fileSize = args.fileSize
 folders = args.folders
 
+# Convert file size to an integer
+if not fileSize.isdigit():
+    raise Exception('-s must be an integer')
+else:
+    fileSize = int(fileSize)
+
 # Find subfolder names and sizes
 foldersAndSizes = folders.split(',')
 if len(foldersAndSizes) % 2 != 0:
-    raise Exception('-f option must have even number of elements')
+    raise Exception('-f option must have an even number of elements')
 
 # Find number of subfolders
 numSubFolders = len(foldersAndSizes) / 2
@@ -45,8 +59,8 @@ for i in range(numSubFolders):
     idx += 2
     
 # Convert file sizes to bytes
-fileSize *= 1024
-subFolderSizes = [1024 * size for size in subFolderSizes]
+fileSize *= bytesInMegabytes
+subFolderSizes = [bytesInMegabytes * size for size in subFolderSizes]
 
 # Make input folder if it doesn't already exist
 if not os.path.exists(inputFolder):
@@ -55,7 +69,8 @@ if not os.path.exists(inputFolder):
 # Create subfolders and files
 for subFolder, subFolderSize in zip(subFolders, subFolderSizes):
     # Instantiate a FileInitializer object for the subfolder
-    fiObj = dataOps.FileInitializer(subFolder, fileSize, subFolderSize)
+    subFolderFullPath = os.path.join(inputFolder, subFolder)
+    fiObj = dataOps.FileInitializer(subFolderFullPath, fileSize, subFolderSize)
 
-    # Iteratively create files in the subfolder
+    # Iteratively write files in the subfolder
     fiObj.writeFiles()
