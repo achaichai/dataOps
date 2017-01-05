@@ -6,6 +6,10 @@ Script to generate the master dataset
 
 The usage is:
     generateData.py -i <inputFolder> -s <fileSize> -f <folders>
+where:
+    inputFolder: location where master dataset should be written,
+    fileSize:    file size in MB,
+    folders:     list of folder names and sizes in MB in form <name1>,<size1>,...
 
 """
 
@@ -19,10 +23,10 @@ __author__ = 'James Chryssanthacopoulos'
 bytesInMegabytes = 1048576
 
 # Define inputs
-parser = argparse.ArgumentParser(description = 'Script to generate sample data')
-parser.add_argument('-i', '--inputFolder', help = 'Name of input folder', required = True)
-parser.add_argument('-s', '--fileSize', help = 'File size in metabytes', required = True)
-parser.add_argument('-f', '--folders', help = 'Folder names and sizes in megabytes <name1>,<size1>,...', required = True)
+parser = argparse.ArgumentParser(description = 'Script to generate the master dataset')
+parser.add_argument('-i', '--inputFolder', help = 'Location where master dataset should be written', required = True)
+parser.add_argument('-s', '--fileSize', help = 'File size in MB', required = True)
+parser.add_argument('-f', '--folders', help = 'List of folder names and sizes in MB in form <name1>,<size1>,...', required = True)
 
 # Parse inputs
 args = parser.parse_args()
@@ -68,9 +72,9 @@ if not os.path.exists(inputFolder):
 
 # Create subfolders and files
 for subFolder, subFolderSize in zip(subFolders, subFolderSizes):
-    # Instantiate a FileInitializer object for the subfolder
+    # Instantiate a DataInitializer object for the subfolder
     subFolderFullPath = os.path.join(inputFolder, subFolder)
-    fiObj = dataOps.FileInitializer(subFolderFullPath, fileSize, subFolderSize)
+    fiObj = dataOps.DataInitializer(subFolderFullPath, fileSize, subFolderSize)
 
     # Iteratively write files in the subfolder
-    fiObj.writeFiles()
+    fiObj.writeData()
