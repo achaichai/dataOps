@@ -15,7 +15,7 @@ The package contains three data operations: generate, update, and backup. To gen
 
 `generateData.py [--help] -i INPUTFOLDER -s FILESIZE -f FOLDERS`
 
-where `INPUTFOLDER` is the location to write to, `FILESIZE` is the file size of each file in megabytes, and `FOLDERS` is a list of subfolder names and sizes in MB in the form of `<name1>,<size1>,<name2>,<size2>,...`.
+where `INPUTFOLDER` is the location to write to, `FILESIZE` is approximately file size of each file in megabytes (except potentially the last), and `FOLDERS` is a list of subfolder names and sizes in MB in the form of `<name1>,<size1>,<name2>,<size2>,...`.
 
 Similarly, to update a master dataset, run:
 
