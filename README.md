@@ -4,8 +4,31 @@ dataOps is a Python package for generating, updating, and backing up datasets re
 # How to Install
 The package can be installed by downloading the source code and running
 
-`pip install -r requirements\`
+`pip install -r requirements`
 
 within a virtual environment or, alternatively, using setup.py:
 
 `python setup.py install`
+
+# How to Use
+The package contains three data: generate, update, and backup. To generate a master dataset, run:
+
+`generateData.py [--help] -i INPUTFOLDER -s FILESIZE -f FOLDERS`
+
+where `INPUTFOLDER` is the location to write to, `FILESIZE` is the file size of each file in megabytes, and `FOLDERS` is a list of subfolder names and sizes in MB in the form of `<name1>,<size1>,<name2>,<size2>,...`
+
+Similarly, to update a master dataset, run:
+
+`updateData.py [--help] -i INPUTFOLDER -f FOLDERS`
+
+where `INPUTFOLDER` is the dataset to update and `FOLDERS` is a list of folder names and sizes in MB to increase by in the same form as before.
+
+Finally, the dataset is backed up using:
+
+`backupData.py [--help] -i INPUTFOLDER -b BACKUPFOLDER`
+
+where `INPUTFOLDER` and `BACKUPFOLDER` are the input and backup folders, respectively.
+
+These utilities can be run with example options using `runGenerateData.sh`, `runUpdateData.sh`, and `runBackupData.sh`. An example master script calling all of these utilities in a processing chain can be run with `runAll.sh`.
+
+Enjoy!
