@@ -120,7 +120,7 @@ class ControlledFileSystem(object):
     
     def _dirFull(self):
         """
-        This method checks if the size of the directory is within 1% of the target size or more or if the max file number has been met
+        This method checks if the size of the directory is within 1% of the target size or more or if the max file number has been reached
         """
         return self._dirSize() >= 0.99 * self.targetDirSize or self._numFiles() >= self.maxFiles
 
@@ -146,7 +146,7 @@ class DataInitializer(ControlledFileSystem):
     
     def writeData(self):
         """
-        This method will create all the files in the directory according to the specifications
+        This method creates all files in the directory according to the specifications
         """
         
         print 'Writing data for directory %s . . .' % self.directory
@@ -178,7 +178,7 @@ class DataUpdater(ControlledFileSystem):
 
     def updateData(self):
         """
-        This method will update all the files in the directory according to the specifications
+        This method updates all files in the directory according to the specifications
         """
         
         print 'Updating data for directory %s . . .' % self.directory
