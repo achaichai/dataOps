@@ -21,7 +21,7 @@ Similarly, to update a master dataset, run:
 
 `updateData.py [--help] -i INPUTFOLDER -f FOLDERS`
 
-where `INPUTFOLDER` is the dataset to update and `FOLDERS` is a list of folder names and sizes in MB to increase by in the same form as before.
+where `INPUTFOLDER` is the dataset to update and `FOLDERS` is a list of subfolder names and sizes in MB to increase by in the same form as before.
 
 Finally, a dataset is backed up using:
 
