@@ -2,10 +2,13 @@
 
 """
 
-Script to updates a master dataset
+Script to update a master dataset
 
 The usage is:
     updateData.py -i <inputFolder> -f <folders>
+where
+    inputFolder: location of existing master dataset,
+    folders:     list of folder names and sizes in MB to increase by in form <name1>,<size1>,...
 
 """
 
@@ -30,9 +33,9 @@ def returnFileSize(folder):
 
 
 # Define inputs
-parser = argparse.ArgumentParser(description = 'Script to generate sample data')
-parser.add_argument('-i', '--inputFolder', help = 'Name of input folder', required = True)
-parser.add_argument('-f', '--folders', help = 'Folder names and sizes in megabytes <name1>,<size1>,...', required = True)
+parser = argparse.ArgumentParser(description = 'Script to update existing master dataset')
+parser.add_argument('-i', '--inputFolder', help = 'Location of existing master dataset', required = True)
+parser.add_argument('-f', '--folders', help = 'List of folder names and sizes in MB to increase by in form <name1>,<size1>,...', required = True)
 
 # Parse inputs
 args = parser.parse_args()
@@ -66,7 +69,7 @@ subFolderSizes = [bytesInMegabytes * size for size in subFolderSizes]
 
 # Make input folder if it doesn't already exist
 if not os.path.exists(inputFolder):
-    raise Exception('Input folder must exist before running update')
+    raise Exception('Master dataset must exist before running update')
 
 # Create subfolders and files
 for subFolder, subFolderSize in zip(subFolders, subFolderSizes):
@@ -74,8 +77,8 @@ for subFolder, subFolderSize in zip(subFolders, subFolderSizes):
     subFolderFullPath = os.path.join(inputFolder, subFolder)
     fileSize = returnFileSize(subFolderFullPath)
     
-    # Instantiate a FileUpdater object for the subfolder
-    fuObj = dataOps.FileUpdater(subFolderFullPath, fileSize, subFolderSize)
+    # Instantiate a DataUpdater object for the subfolder
+    fuObj = dataOps.DataUpdater(subFolderFullPath, fileSize, subFolderSize)
 
     # Iteratively update files in the subfolder
-    fuObj.updateFiles()
+    fuObj.updateData()
