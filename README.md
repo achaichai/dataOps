@@ -4,8 +4,8 @@ dataOps is a Python package for generating, updating, and backing up datasets re
 # How to Install
 The package can be installed by downloading the source code and running
 
-<pip install -r requirements>
+`pip install -r requirements\`
 
 within a virtual environment or, alternatively, using setup.py:
 
-<python setup.py install>
+`python setup.py install`
