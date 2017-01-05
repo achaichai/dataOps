@@ -26,32 +26,33 @@ incFolders=location,12,sensors,23,devices,10
 ## GENERATE DATA ##
 ###################
 
-echo GENERATING DATA ...
+echo GENERATING DATA into $inputFolder with file size = $fileSize MB and folders = $folders ...
 generateData.py -i $inputFolder -s $fileSize -f $folders
 
 #################
 ## BACKUP DATA ##
 #################
 
-echo BACKINGUP DATA ...
+echo BACKING UP DATA $inputFolder into $backupFolder ...
 backupData.py -i $inputFolder -b $backupFolder
 
 #################
 ## UPDATE DATA ##
 #################
 
-echo UPDATING DATA ...
+echo UPDATING DATA $inputFolder with folder increments $incFolders ...
 updateData.py -i $inputFolder -f $incFolders
 
 #########################
 ## BACKUP UPDATED DATA ##
 #########################
 
-echo BACKING UP UPDATED DATA ...
+echo BACKING UP UPDATED DATA $inputFolder into $backupFolder ...
 backupData.py -i $inputFolder -b $backupFolder
 
 #################
 ## CLEANING UP ##
 #################
 
+echo CLEANING UP ...
 rm -rf $inputFolder
