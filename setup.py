@@ -7,7 +7,7 @@ version = dataOps.__version__
 
 setup(name = name,
       version = version,
-      description = 'Data operators to create, update, and backup hierarchical files on disk',
+      description = 'Python package for generating, updating, and backing up datasets represented as sets of files on disk',
       author = 'James Chryssanthacopoulos',
       author_email = 'jchryssanthacopoulos@gmail.com',
       url = 'https://github.com/jc4089/dataOps',
@@ -20,6 +20,7 @@ setup(name = name,
         'examples/runBackupData.sh',
         'examples/runAll.sh',
         'examples/clean.sh',
+        'dataOps/test/testSuite.py',
         ],
       classifiers = [
         'Development Status :: 4 - Beta',
