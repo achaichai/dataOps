@@ -11,7 +11,7 @@ within a virtual environment or, alternatively, using setup.py:
 `python setup.py install`
 
 # How to Use
-The package contains three data: generate, update, and backup. To generate a master dataset, run:
+The package contains three data operations: generate, update, and backup. To generate a master dataset, run:
 
 `generateData.py [--help] -i INPUTFOLDER -s FILESIZE -f FOLDERS`
 
