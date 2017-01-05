@@ -3,9 +3,9 @@
 # Add root directory to path
 PATH=$PATH:..
 
-################
-## PARAMETERS ##
-################
+#######################
+## DEFINE PARAMETERS ##
+#######################
 
 # Input folder
 inputFolder=exampleData
@@ -50,9 +50,9 @@ updateData.py -i $inputFolder -f $incFolders
 echo BACKING UP UPDATED DATA $inputFolder into $backupFolder ...
 backupData.py -i $inputFolder -b $backupFolder
 
-#################
-## CLEANING UP ##
-#################
+##############
+## CLEAN UP ##
+##############
 
 echo CLEANING UP ...
 rm -rf $inputFolder
